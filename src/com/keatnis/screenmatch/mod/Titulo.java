@@ -1,6 +1,8 @@
 package com.keatnis.screenmatch.mod;
 
-public class Titulo {
+import com.keatnis.screenmatch.calculos.Clasificacion;
+
+public class Titulo implements Clasificacion {
 
     String nombre;
     int fechaDeLanzamiento;
@@ -62,4 +64,10 @@ public class Titulo {
     public int getTotalDeEvaluaciones() {
         return totalDeEvaluaciones;
     }
+
+    @Override
+    public int getClasificacion() {
+        return (int) calcularMedia()/2;
+    }
+
 }

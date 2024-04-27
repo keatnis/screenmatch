@@ -1,3 +1,5 @@
+import com.keatnis.screenmatch.calculos.FiltroRecomendacion;
+import com.keatnis.screenmatch.mod.Episodio;
 import com.keatnis.screenmatch.mod.Pelicula;
 import com.keatnis.screenmatch.mod.Serie;
 import com.keatnis.screenmatch.calculos.CalculadoraDeTiempo;
@@ -41,7 +43,14 @@ public class Principal {
         System.out.println("Tiempo necesario para ver tus titulos favoritos en estas vacaciones: " +
                 calculadoraDeTiempo.getTiempoTotal());
 
+        FiltroRecomendacion filtroRecomendacion = new FiltroRecomendacion();
+        filtroRecomendacion.filtra(nuevaPelicula);
 
+        Episodio episodio = new Episodio();
+        episodio.setNombre("La casa targaryen");
+        episodio.setSerie(casaDragron);
+        episodio.setTotalVisualizaciones(50);
+        filtroRecomendacion.filtra(episodio);
     }
 
 }
