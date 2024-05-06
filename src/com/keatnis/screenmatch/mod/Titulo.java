@@ -1,8 +1,8 @@
 package com.keatnis.screenmatch.mod;
 
 import com.keatnis.screenmatch.calculos.Clasificacion;
-
-public class Titulo implements Clasificacion {
+//usando comparable para comparar y ordenar los nombres de los titulos
+public class Titulo implements Comparable <Titulo> {
 
     String nombre;
     int fechaDeLanzamiento;
@@ -10,6 +10,11 @@ public class Titulo implements Clasificacion {
     boolean incluidoEnELPlan;
     private double sumaEvaluaciones;
     private int totalDeEvaluaciones;
+
+    public Titulo(String nombre, int fechaDeLanzamiento) {
+        this.nombre = nombre;
+        this.fechaDeLanzamiento = fechaDeLanzamiento;
+    }
 
     public String getNombre() {
         return nombre;
@@ -65,9 +70,9 @@ public class Titulo implements Clasificacion {
         return totalDeEvaluaciones;
     }
 
-    @Override
-    public int getClasificacion() {
-        return (int) calcularMedia()/2;
-    }
 
+    @Override
+    public int compareTo(Titulo titulo) {
+        return this.getNombre().compareTo(titulo.getNombre());
+    }
 }
