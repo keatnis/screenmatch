@@ -7,6 +7,7 @@ import com.keatnis.screenmatch.mod.Titulo;
 import java.util.ArrayList;
 
 import java.util.Collections;
+import java.util.Comparator;
 
 public class PrincipalConListas {
 
@@ -26,7 +27,9 @@ public class PrincipalConListas {
         Collections.sort(lista);
 
         System.out.println("lista ordenada con comparable: " + lista);
-
+        // comparar usando comparator ademas de ordenar con comparable
+        lista.sort(Comparator.comparing(Titulo::getFechaDeLanzamiento));
+        System.out.println("lista ordenada por fecha: " +lista);
         for(Titulo item : lista){
           //  System.out.println(item.getNombre());
             // si este es del tipo pelicula entonces se ejecuta lo siguiente, se hace lka instacia de pelicula con pelicula1
