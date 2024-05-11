@@ -1,10 +1,17 @@
 package com.keatnis.screenmatch.mod;
 
+import com.google.gson.annotations.SerializedName;
 import com.keatnis.screenmatch.calculos.Clasificacion;
 //usando comparable para comparar y ordenar los nombres de los titulos
 public class Titulo implements Comparable <Titulo> {
-
+    /*
+        usando gson
+        al convertir el json al las clases algunos nombres de las variables no coincidan y por eso se usa
+        la anotacion @SerializedName para ajustar los nombres, pero este puede traer problemas al cambiar de api que use otro nombre en sus variables
+     */
+    @SerializedName("Title")
     String nombre;
+    @SerializedName("Year")
     int fechaDeLanzamiento;
     int duracionMinutos;
     boolean incluidoEnELPlan;
@@ -74,5 +81,12 @@ public class Titulo implements Comparable <Titulo> {
     @Override
     public int compareTo(Titulo titulo) {
         return this.getNombre().compareTo(titulo.getNombre());
+    }
+
+    @Override
+    public String toString() {
+        return
+                "nombre='" + nombre + '\'' +
+                ", fechaDeLanzamiento=" + fechaDeLanzamiento ;
     }
 }
