@@ -2,6 +2,8 @@ package com.keatnis.screenmatch.mod;
 
 import com.google.gson.annotations.SerializedName;
 import com.keatnis.screenmatch.calculos.Clasificacion;
+import com.keatnis.screenmatch.exception.ErrorEnConversionEnDuracionException;
+
 //usando comparable para comparar y ordenar los nombres de los titulos
 public class Titulo implements Comparable <Titulo> {
     /*
@@ -21,6 +23,19 @@ public class Titulo implements Comparable <Titulo> {
     public Titulo(String nombre, int fechaDeLanzamiento) {
         this.nombre = nombre;
         this.fechaDeLanzamiento = fechaDeLanzamiento;
+    }
+
+    public Titulo(TituloOmdb miTituloOmdb) {
+        this.nombre = miTituloOmdb.title();
+        this.fechaDeLanzamiento = Integer.valueOf(miTituloOmdb.year());
+        //manejo de excepciones al tener N/A en el runtime de la pelicula
+        if (miTituloOmdb.runtime().contains("N/A")){
+            //creamos nuestra propia exception
+            throw new ErrorEnConversionEnDuracionException("Ocurrio un error al convertir runtime porque contiene N/A");
+        }
+        this.duracionMinutos = Integer
+                .valueOf(miTituloOmdb.runtime()
+                .substring(0,3).replace(" ",""));
     }
 
     public String getNombre() {
@@ -87,6 +102,7 @@ public class Titulo implements Comparable <Titulo> {
     public String toString() {
         return
                 "nombre='" + nombre + '\'' +
-                ", fechaDeLanzamiento=" + fechaDeLanzamiento ;
+                ", fechaDeLanzamiento=" + fechaDeLanzamiento
+                +", runtime= "+duracionMinutos;
     }
 }
