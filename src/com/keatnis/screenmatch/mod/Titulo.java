@@ -11,9 +11,7 @@ public class Titulo implements Comparable <Titulo> {
         al convertir el json al las clases algunos nombres de las variables no coincidan y por eso se usa
         la anotacion @SerializedName para ajustar los nombres, pero este puede traer problemas al cambiar de api que use otro nombre en sus variables
      */
-    @SerializedName("Title")
     String nombre;
-    @SerializedName("Year")
     int fechaDeLanzamiento;
     int duracionMinutos;
     boolean incluidoEnELPlan;
@@ -101,8 +99,8 @@ public class Titulo implements Comparable <Titulo> {
     @Override
     public String toString() {
         return
-                "nombre='" + nombre + '\'' +
+                "("+"nombre='" + nombre +
                 ", fechaDeLanzamiento=" + fechaDeLanzamiento
-                +", runtime= "+duracionMinutos;
+                +", runtime= "+duracionMinutos +")";
     }
 }
